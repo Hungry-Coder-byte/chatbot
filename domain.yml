@@ -1,0 +1,77 @@
+version: "2.0"
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 480
+  carry_over_slots_to_new_session: true
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - enter_data:
+      use_entities: []
+responses:
+  utter_greet:
+    - text: Hey there, my name is Cisco.
+    - text: Hi, I'm Cisco!
+    - text: Hi! My name's Cisco.
+    - text: Hey! How are you?
+  utter_greet_name:
+    - text: Hi, {name}!
+    - text: Hello, {name}!
+    - text: Hey, {name}!
+  utter_greet_noname:
+    - text: Hey!
+    - text: Hi!
+    - text: Hey there!
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jupg"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+  utter_ask_migration:
+    - text: Are you migrating from another tool?
+  utter_got_it:
+    - text: Ok! I got it.
+  utter_ask_next:
+    - text: This is my next question
+  utter_learning:
+    - text: I am still learning. One day I will we will have a great conversation.
+  utter_options:
+    - buttons:
+        - payload: /affirm
+          title: 👍
+        - payload: /deny
+          title: 👎
+      text: Did I help?
+  utter_ask_name:
+    - text: What's your name?
+  utter_ask_person_name:
+    - text: BTW What's your name?
+  utter_inform_privacypolicy:
+    - text: By chatting to me you agree to our [privacy policy](https://rasa.com/privacy-policy/).
+entities:
+  - name
+
+slots:
+  name:
+    type: text
+  shown_privacy:
+    type: any
+
+actions:
+  - action_greet_user
